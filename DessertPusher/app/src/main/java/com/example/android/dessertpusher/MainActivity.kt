@@ -71,11 +71,11 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        dessertTimer = DessertTimer(this.lifecycle)
         if(savedInstanceState != null) {
-            revenue = savedInstanceState.getInt(KEY_REVENUE)
-            dessertsSold = savedInstanceState.getInt(KEY_DESSERT_SOLD)
-            dessertTimer.secondsCount = savedInstanceState.getInt(KEY_DESSERT_SOLD)
+            revenue = savedInstanceState.getInt(KEY_REVENUE, 0)
+            dessertsSold = savedInstanceState.getInt(KEY_DESSERT_SOLD, 0)
+            dessertTimer.secondsCount = savedInstanceState.getInt(KEY_TIMER, 0)
         }
 
         Timber.i("onCreate called")
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
             onDessertClicked()
         }
 
-        dessertTimer = DessertTimer(this.lifecycle)
+
 
         // Set the TextViews to the right values
         binding.revenue = revenue
@@ -196,8 +196,8 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         Timber.i("onRestart called")
     }
 
-    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-        super.onSaveInstanceState(outState, outPersistentState)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
         outState.putInt(KEY_REVENUE, revenue)
         outState.putInt(KEY_DESSERT_SOLD, dessertsSold)
         outState.putInt(KEY_TIMER, dessertTimer.secondsCount)
