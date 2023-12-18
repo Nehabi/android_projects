@@ -22,6 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.example.android.guesstheword.R
@@ -35,6 +36,16 @@ class GameFragment : Fragment() {
     private lateinit var gameViewModel : GameViewModel
 
     private lateinit var binding: GameFragmentBinding
+
+    companion object {
+        // These represent different important times
+        // This is when the game is over
+        const val DONE = 0L
+        // This is the number of milliseconds in a second
+        const val ONE_SECOND = 1000L
+        // This is the total time of the game
+        const val COUNTDOWN_TIME = 60000L
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -52,13 +63,28 @@ class GameFragment : Fragment() {
 
         binding.correctButton.setOnClickListener {
             gameViewModel.onCorrect()
-            updateScoreText()
-            updateWordText()
         }
         binding.skipButton.setOnClickListener {
             gameViewModel.onSkip()
-            updateScoreText()
-            updateWordText()
+        }
+
+        gameViewModel.score.observe(this.viewLifecycleOwner, Observer {
+            binding.scoreText.text = gameViewModel.score.value.toString()
+        })
+
+        gameViewModel.word.observe(this.viewLifecycleOwner, Observer {
+            binding.wordText.text = gameViewModel.word.value
+        })
+
+        gameViewModel.finished.observe(this.viewLifecycleOwner, Observer {
+            if(gameViewModel.finished.value == true) {
+                gameFinished()
+                gameViewModel.gameCompleted()
+            }
+        })
+
+        gameViewModel.timeLeft.observe(this.viewLifecycleOwner) {
+            binding.timerText.text = gameViewModel.timeLeft.value
         }
 
         return binding.root
@@ -70,18 +96,7 @@ class GameFragment : Fragment() {
      */
     private fun gameFinished() {
         val action = GameFragmentDirections.actionGameToScore()
+        action.score = gameViewModel.score.value ?: 0
         findNavController(this).navigate(action)
-    }
-
-
-    /** Methods for updating the UI **/
-
-    private fun updateWordText() {
-        binding.wordText.text = gameViewModel.word
-
-    }
-
-    private fun updateScoreText() {
-        binding.scoreText.text = gameViewModel.score.toString()
     }
 }
