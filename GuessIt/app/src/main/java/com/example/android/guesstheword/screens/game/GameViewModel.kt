@@ -25,14 +25,26 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
+
+    enum class BuzzType(val pattern: LongArray) {
+        CORRECT(CORRECT_BUZZ_PATTERN),
+        GAME_OVER(GAME_OVER_BUZZ_PATTERN),
+        COUNTDOWN_PANIC(PANIC_BUZZ_PATTERN),
+        NO_BUZZ(NO_BUZZ_PATTERN)
+    }
     companion object {
         // These represent different important times
         // This is when the game is over
         const val DONE = 0L
+        private const val COUNTDOWN_PANIC_SECONDS = 10L
         // This is the number of milliseconds in a second
         const val ONE_SECOND = 1000L
         // This is the total time of the game
         const val COUNTDOWN_TIME = 60000L
+        private val CORRECT_BUZZ_PATTERN = longArrayOf(100, 100, 100, 100, 100, 100)
+        private val PANIC_BUZZ_PATTERN = longArrayOf(0, 200)
+        private val GAME_OVER_BUZZ_PATTERN = longArrayOf(0, 2000)
+        private val NO_BUZZ_PATTERN = longArrayOf(0)
     }
     // The current word
     private val _word = MutableLiveData<String>()
@@ -59,6 +71,10 @@ class GameViewModel : ViewModel() {
         DateUtils.formatElapsedTime(time)
     }
 
+    private val _eventBuzz = MutableLiveData<BuzzType>()
+    val eventBuzz : MutableLiveData<BuzzType>
+        get() = _eventBuzz
+
     // The list of words - the front of the list is the next word to guess
     private lateinit var wordList: MutableList<String>
 
@@ -70,16 +86,21 @@ class GameViewModel : ViewModel() {
         _word.value = wordList[0]
         _finished.value = false
         _timeLeft.value = COUNTDOWN_TIME
+        _eventBuzz.value = BuzzType.NO_BUZZ
         timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
 
             override fun onTick(millisUntilFinished: Long) {
                 _timeLeft.value = millisUntilFinished / ONE_SECOND
+                if (millisUntilFinished / ONE_SECOND <= COUNTDOWN_PANIC_SECONDS) {
+                    _eventBuzz.value = BuzzType.COUNTDOWN_PANIC
+                }
             }
 
             override fun onFinish() {
                 _timeLeft.value = DONE
                 _finished.value = true
                 resetList()
+                _eventBuzz.value = BuzzType.GAME_OVER
             }
         }
 
@@ -132,6 +153,7 @@ class GameViewModel : ViewModel() {
             resetList()
         }
         _word.value = wordList.removeAt(0)
+        _eventBuzz.value = BuzzType.CORRECT
     }
 
     fun onSkip() {
@@ -146,6 +168,10 @@ class GameViewModel : ViewModel() {
 
     fun gameCompleted() {
         _finished.value = false
+    }
+
+    fun onBuzzComplete() {
+        _eventBuzz.value = BuzzType.NO_BUZZ
     }
 }
 
