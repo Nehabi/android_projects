@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">ShoeStore</string>
     <string name="shoe_store">Shoe Store</string>
+    <string name="shoe_lists">Shoe Lists</string>
+    <string name="shoe_details">Shoe Details</string>
     <string name="email">EMAIL</string>
     <string name="password">PASSWORD</string>
     <string name="login">LOGIN</string>
