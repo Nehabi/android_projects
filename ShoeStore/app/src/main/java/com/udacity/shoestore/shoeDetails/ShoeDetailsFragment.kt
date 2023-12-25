@@ -1,4 +1,4 @@
-package com.udacity.shoestore.fragment
+package com.udacity.shoestore.shoeDetails
 
 import android.os.Bundle
 import android.view.LayoutInflater
