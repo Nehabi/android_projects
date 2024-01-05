@@ -11,9 +11,11 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeListsBinding
+import com.udacity.shoestore.shoeDetails.ShoeDetailsModel
 
 
 class ShoeListsFragment : Fragment() {
@@ -26,13 +28,20 @@ class ShoeListsFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_shoe_lists, container, false
+            R.layout.fragment_shoe_lists, container,
+            false
         )
+
         binding.nextButton.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_shoeListsFragment_to_shoeDetailsFragment)
+            view.findNavController().navigate(ShoeListsFragmentDirections.actionShoeListsFragmentToShoeDetailsFragment())
         }
-        shoeListsViewModel = ShoeListsViewModel()
+
+        shoeListsViewModel = ViewModelProvider(this)[ShoeListsViewModel::class.java]
+
+        binding.shoeListsViewModel = shoeListsViewModel
+
         setShoeLists()
+
         return binding.root
     }
 
@@ -52,4 +61,6 @@ class ShoeListsFragment : Fragment() {
             myLayout.addView(myButton)
         }
     }
+
+
 }

@@ -16,4 +16,8 @@
     <string name="shoe_size">6.5</string>
     <string name="shoe_brand">SHOE BRAND</string>
     <string name="shoe_description">SHOE DESCRIPTION</string>
+    <string name="welcome">Welcome</string>
+    <string name="logout">LOGOUT</string>
+    <string name="logout_success">LOGOUT SUCCESSFUL</string>
+    <string name="enter_name">NAME</string>
 </resources>
