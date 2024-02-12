@@ -12,9 +12,11 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.navigation.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeListsBinding
+import com.udacity.shoestore.models.Shoe
 import com.udacity.shoestore.shoeDetails.ShoeDetailsModel
 
 
@@ -32,13 +34,28 @@ class ShoeListsFragment : Fragment() {
             false
         )
 
-        binding.nextButton.setOnClickListener { view ->
+        binding.add.setOnClickListener { view ->
             view.findNavController().navigate(ShoeListsFragmentDirections.actionShoeListsFragmentToShoeDetailsFragment())
         }
 
-        shoeListsViewModel = ViewModelProvider(this)[ShoeListsViewModel::class.java]
+        shoeListsViewModel = ViewModelProvider(requireActivity(), ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(ShoeListsViewModel::class.java)
 
         binding.shoeListsViewModel = shoeListsViewModel
+
+        if(arguments != null && requireArguments().containsKey("name")) {
+            val args = ShoeListsFragmentArgs.fromBundle(requireArguments())
+            if (!args.name.isNullOrEmpty()) {
+                addShoe(
+                    Shoe(
+                        args.name.toString(),
+                        6.5,
+                        args.name.toString(),
+                        args.name.toString(),
+                        listOf()
+                    ),
+                )
+            }
+        }
 
         setShoeLists()
 
@@ -62,5 +79,9 @@ class ShoeListsFragment : Fragment() {
         }
     }
 
+
+    private fun addShoe(s: Shoe) {
+        shoeListsViewModel.addShoe(s)
+    }
 
 }

@@ -24,7 +24,7 @@ class InstructionsFragment: Fragment() {
         val binding: FragmentInstructionsBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_instructions, container, false)
         binding.nextButton.setOnClickListener{view ->
-            view.findNavController().navigate(R.id.action_instructionsFragment_to_shoeListsFragment)
+            view.findNavController().navigate(InstructionsFragmentDirections.actionInstructionsFragmentToShoeListsFragment(null, null, null, null, null))
         }
         setHasOptionsMenu(true)
         return binding.root

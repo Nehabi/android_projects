@@ -15,99 +15,78 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/shoe_details"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!--        Name-->
         <EditText
             android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/layout_margin"
-            android:text="Name"
+            android:hint="@string/enter_name"
+            android:inputType="text"
             android:afterTextChanged="@{shoeDetailsModel.updateName}"
+            android:drawableStart="@drawable/shoe"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/EditBox"/>
 
-        <!--        Size-->
         <EditText
             android:id="@+id/size"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/layout_margin"
-            android:layout_marginTop="116dp"
+            android:hint="@string/enter_size"
             android:inputType="numberDecimal"
             android:afterTextChanged="@{shoeDetailsModel.updateSize}"
+            android:drawableStart="@drawable/size"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            style="@style/EditBox"/>
 
-        <!--        Company-->
         <EditText
             android:id="@+id/company"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/layout_margin"
-            android:layout_marginTop="116dp"
-            android:text="Company"
+            android:hint="@string/enter_company"
+            android:inputType="text"
             android:afterTextChanged="@{shoeDetailsModel.updateCompany}"
+            android:drawableStart="@drawable/company"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/size" />
+            app:layout_constraintTop_toBottomOf="@+id/size"
+            style="@style/EditBox"/>
 
-        <!--        Description-->
         <EditText
             android:id="@+id/description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/layout_margin"
-            android:layout_marginTop="116dp"
-            android:text="Description"
+            android:hint="@string/enter_description"
+            android:inputType="textMultiLine"
             android:afterTextChanged="@{shoeDetailsModel.updateDescription}"
+            android:drawableStart="@drawable/description"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/company"/>
+            app:layout_constraintTop_toBottomOf="@+id/company"
+            style="@style/EditBox"/>
 
-        <!--        Image-->
         <EditText
             android:id="@+id/image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/layout_margin"
-            android:layout_marginTop="116dp"
-            android:text="Images"
+            android:hint="@string/enter_image_name"
             android:afterTextChanged="@{shoeDetailsModel.updateImage}"
+            android:drawableStart="@drawable/image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description"/>
+            app:layout_constraintTop_toBottomOf="@+id/description"
+            style="@style/EditBox"/>
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/black"
-            android:text="SUBMIT"
-            android:fontFamily="@font/roboto_medium"
-            android:textColor="@android:color/white"
-            android:layout_margin="@dimen/layout_margin"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/submit"
+            android:onClick="@{() -> shoeDetailsModel.onSubmitClick()}"
+            android:text="@string/submit"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/cancel"
             app:layout_constraintTop_toBottomOf="@+id/image"
-            android:onClick="@{() -> shoeDetailsModel.onSubmitClick()}"/>
+            style="@style/small_button"/>
+
+        <Button
+            android:id="@+id/cancel"
+            android:onClick="@{() -> shoeDetailsModel.onCancel()}"
+            android:text="@string/cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/submit"
+            app:layout_constraintTop_toBottomOf="@+id/image"
+            style="@style/small_button"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -41,7 +41,20 @@ class ShoeDetailsFragment: Fragment() {
         shoeDetailsModel.onSuccess.observe(viewLifecycleOwner) { value ->
             if(value){
                 this.findNavController()
-                    .navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListsFragment())
+                    .navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListsFragment(
+                        shoeDetailsModel.name.value.toString(),
+                        shoeDetailsModel.size.value.toString(),
+                        shoeDetailsModel.company.value.toString(),
+                        shoeDetailsModel.description.value.toString(),
+                        shoeDetailsModel.image.value.toString(),
+                        ))
+            }
+        }
+
+        shoeDetailsModel.onCancel.observe(viewLifecycleOwner) { value ->
+            if(value) {
+                this.findNavController()
+                    .navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListsFragment(null, null, null, null, null))
             }
         }
 

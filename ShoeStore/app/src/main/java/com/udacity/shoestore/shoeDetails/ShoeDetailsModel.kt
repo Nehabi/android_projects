@@ -38,8 +38,13 @@ class ShoeDetailsModel: ViewModel() {
     val onSuccess: LiveData<Boolean>
         get() = _onSuccess
 
+    private val _onCancel = MutableLiveData<Boolean>()
+    val onCancel: LiveData<Boolean>
+        get() = _onCancel
+
     init {
         _onSuccess.value = false
+        _onCancel.value = false
     }
 
     fun onSubmitClick() {
@@ -65,6 +70,11 @@ class ShoeDetailsModel: ViewModel() {
         }
         _onSuccess.value = true
     }
+
+    fun onCancel() {
+        _onCancel.value = true
+    }
+
 
     private fun showToast(message: String) {
         _toastMessage.value = message

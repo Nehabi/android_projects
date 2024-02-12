@@ -2,4 +2,10 @@
 <resources>
     <dimen name="layout_margin">10dp</dimen>
     <dimen name="top_margin">24dp</dimen>
+    <dimen name="fill_space">0dp</dimen>
+    <dimen name="editDrawablePadding">4dp</dimen>
+    <dimen name="editTextSize">20sp</dimen>
+    <dimen name="iconWidth">25sp</dimen>
+    <dimen name="iconHeight">25sp</dimen>
+    <dimen name="itemTextView">15sp</dimen>
 </resources>

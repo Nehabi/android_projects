@@ -9,47 +9,42 @@
             name="shoeListsViewModel"
             type="com.udacity.shoestore.shoeLists.ShoeListsViewModel" />
     </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/title"
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/shoeList"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/shoe_lists"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/shoeList"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            android:visibility="visible"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            app:layout_constraintBottom_toTopOf="@+id/next_button">
-            <!-- Add content dynamically here -->
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/next_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_margin="@dimen/layout_margin"
-            android:background="@android:color/black"
-            android:text="@string/add"
+            android:layout_gravity="bottom|end"
             android:fontFamily="@font/roboto_medium"
             android:textColor="@android:color/white"
-            app:layout_constraintTop_toBottomOf="@+id/shoeList"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="159dp" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+            android:src="@drawable/addshoe"
+            android:contentDescription="@string/add_new_shoe"
+            app:fabSize="mini"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
