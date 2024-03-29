@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentLoginBinding
-
 
 class LoginFragment : Fragment() {
     override fun onCreateView(
@@ -22,8 +21,8 @@ class LoginFragment : Fragment() {
 
         val buttonList : List<View> = listOf(binding.loginButton, binding.registerButton)
         for (item in buttonList) {
-            item.setOnClickListener { view ->
-                view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+            item.setOnClickListener {
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
             }
         }
         return binding.root

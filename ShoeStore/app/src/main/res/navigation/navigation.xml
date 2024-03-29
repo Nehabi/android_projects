@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    android:label="@string/instruction_msg"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/loginFragment"
+    android:label="@string/instruction_msg">
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.udacity.shoestore.login.LoginFragment"
@@ -15,6 +15,21 @@
             app:destination="@id/welcomeFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_instructionsFragment"
+            app:destination="@id/instructionsFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_loginFragment_to_shoeListsFragment"
+            app:destination="@id/shoeListsFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_loginFragment_to_shoeDetailsFragment"
+            app:destination="@id/shoeDetailsFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -34,10 +49,7 @@
         tools:layout="@layout/fragment_instructions">
         <action
             android:id="@+id/action_instructionsFragment_to_shoeListsFragment"
-            app:destination="@id/shoeListsFragment" />
-        <action
-            android:id="@+id/action_instructionsFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
+            app:destination="@id/shoeListsFragment"
             app:popUpTo="@id/instructionsFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -69,6 +81,11 @@
             android:name="images"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_shoeListsFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/instructionsFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/shoeDetailsFragment"

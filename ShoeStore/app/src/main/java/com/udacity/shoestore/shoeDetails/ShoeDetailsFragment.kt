@@ -8,8 +8,6 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeDetailsBinding
@@ -21,7 +19,7 @@ class ShoeDetailsFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val binding: FragmentShoeDetailsBinding = DataBindingUtil.inflate(
             inflater,
@@ -46,7 +44,7 @@ class ShoeDetailsFragment: Fragment() {
                         shoeDetailsModel.size.value.toString(),
                         shoeDetailsModel.company.value.toString(),
                         shoeDetailsModel.description.value.toString(),
-                        shoeDetailsModel.image.value.toString(),
+                        shoeDetailsModel.image.value.toString()
                         ))
             }
         }

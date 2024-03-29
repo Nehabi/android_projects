@@ -41,8 +41,17 @@
     <style name="itemTextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">@dimen/itemTextView</item>
         <item name="android:singleLine">false</item>
+        <item name="android:drawablePadding">@dimen/editDrawablePadding</item>
+    </style>
+    <style name="descriptionTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:textSize">@dimen/descriptionTextSize</item>
+        <item name="android:layout_margin">@dimen/layout_margin</item>
+        <item name="android:layout_marginTop">@dimen/top_margin</item>
     </style>
 </resources>

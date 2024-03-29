@@ -10,23 +10,27 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/layout_margin"
-            android:layout_marginTop="@dimen/top_margin"
-            android:fontFamily="@font/roboto_light"
-            android:text="@string/sample_text"
+            android:id="@+id/line1"
+            android:text="@string/instructionTextLine1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/descriptionTextView"/>
+
+        <TextView
+            android:id="@+id/line2"
+            android:text="@string/instructionTextLine2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line1"
+            style="@style/descriptionTextView"/>
 
         <Button
             android:id="@+id/next_button"
             android:text="@string/next"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email"
+            app:layout_constraintTop_toBottomOf="@+id/line2"
             style="@style/button"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

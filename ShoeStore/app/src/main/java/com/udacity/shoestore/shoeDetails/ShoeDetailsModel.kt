@@ -1,13 +1,9 @@
 package com.udacity.shoestore.shoeDetails
 
 import android.text.Editable
-import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import timber.log.Timber
 
 class ShoeDetailsModel: ViewModel() {
     private var _name = MutableLiveData<String>()

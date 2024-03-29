@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-
-    <ImageView
+    <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/shoeImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="@dimen/layout_margin"
-        tools:src="@drawable/shoe2"/>
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:layout_margin="@dimen/layout_margin">
+    </com.denzcoskun.imageslider.ImageSlider>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,22 +21,26 @@
         <TextView
             android:id="@+id/shoeName"
             tools:text="@string/shoe_name"
-            style="@style/itemTextView"/>
+            style="@style/itemTextView"
+            app:drawableStartCompat="@drawable/shoe" />
 
         <TextView
             android:id="@+id/shoeSize"
             tools:text="@string/shoe_size"
-            style="@style/itemTextView" />
+            style="@style/itemTextView"
+            app:drawableStartCompat="@drawable/size"/>
 
         <TextView
             android:id="@+id/shoeBrand"
             tools:text="@string/shoe_brand"
-            style="@style/itemTextView"/>
+            style="@style/itemTextView"
+            app:drawableStartCompat="@drawable/company"/>
 
         <TextView
             android:id="@+id/shoeDescription"
             tools:text="@string/shoe_description"
-            style="@style/itemTextView" />
+            style="@style/itemTextView"
+            app:drawableStartCompat="@drawable/description"/>
 
     </LinearLayout>
 </LinearLayout>

@@ -14,7 +14,7 @@ class ShoeListsViewModel: ViewModel() {
 
     private fun setShoeList() {
         _shoeList = mutableListOf(
-            Shoe("Nike Air", 6.5, "Nike", "Nike new shoes", listOf()),
+            Shoe("Nike AIR", 6.5, "Nike", "Nike new shoes", listOf("shoe1", "shoe2")),
 
         )
     }
