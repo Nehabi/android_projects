@@ -29,13 +29,6 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         //Shared preference to store the last screen
         sharedPref = getSharedPreferences(lastScreen, MODE_PRIVATE)
 
-        when(sharedPref.getInt(lastScreen, -1)) {
-            R.id.welcomeFragment -> navController.navigate(R.id.action_loginFragment_to_welcomeFragment)
-            R.id.instructionsFragment -> navController.navigate(R.id.action_loginFragment_to_instructionsFragment)
-            R.id.shoeListsFragment -> navController.navigate(R.id.action_loginFragment_to_shoeListsFragment)
-            R.id.shoeDetailsFragment -> navController.navigate(R.id.action_loginFragment_to_shoeDetailsFragment)
-        }
-
         //navigation
         navController = this.findNavController(R.id.navHostFragment)
 
@@ -44,6 +37,7 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         topLevelDestinations.add(R.id.loginFragment)
         topLevelDestinations.add(R.id.welcomeFragment)
         topLevelDestinations.add(R.id.instructionsFragment)
+        topLevelDestinations.add(R.id.shoeListsFragment)
         appBarConfiguration = AppBarConfiguration.Builder(topLevelDestinations).build()
 
         //drawer layout - left menu
@@ -60,6 +54,13 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
             else
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        }
+
+        when(sharedPref.getInt(lastScreen, -1)) {
+            R.id.welcomeFragment -> navController.navigate(R.id.action_loginFragment_to_welcomeFragment)
+            R.id.instructionsFragment -> navController.navigate(R.id.action_loginFragment_to_instructionsFragment)
+            R.id.shoeListsFragment -> navController.navigate(R.id.action_loginFragment_to_shoeListsFragment)
+            R.id.shoeDetailsFragment -> navController.navigate(R.id.action_loginFragment_to_shoeDetailsFragment)
         }
     }
 

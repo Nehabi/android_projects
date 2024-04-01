@@ -60,7 +60,9 @@
         tools:layout="@layout/fragment_shoe_lists">
         <action
             android:id="@+id/action_shoeListsFragment_to_shoeDetailsFragment"
-            app:destination="@id/shoeDetailsFragment" />
+            app:destination="@id/shoeDetailsFragment"
+            app:popUpTo="@id/shoeListsFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="name"
             app:argType="string"
@@ -84,7 +86,7 @@
         <action
             android:id="@+id/action_shoeListsFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:popUpTo="@id/instructionsFragment"
+            app:popUpTo="@id/shoeListsFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -95,7 +97,7 @@
         <action
             android:id="@+id/action_shoeDetailsFragment_to_shoeListsFragment"
             app:destination="@id/shoeListsFragment"
-            app:popUpTo="@id/instructionsFragment"
-            app:popUpToInclusive="false" />
+            app:popUpTo="@id/shoeDetailsFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
