@@ -2,7 +2,9 @@ package com.udacity.shoestore
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.LifecycleObserver
@@ -32,28 +34,32 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         //navigation
         navController = this.findNavController(R.id.navHostFragment)
 
+        //drawer layout - left menu
+        drawerLayout = binding.drawerLayout
+
         //list of to level destination to remove back button
         val topLevelDestinations: MutableSet<Int> = HashSet()
         topLevelDestinations.add(R.id.loginFragment)
         topLevelDestinations.add(R.id.welcomeFragment)
         topLevelDestinations.add(R.id.instructionsFragment)
         topLevelDestinations.add(R.id.shoeListsFragment)
-        appBarConfiguration = AppBarConfiguration.Builder(topLevelDestinations).build()
-
-        //drawer layout - left menu
-        drawerLayout = binding.drawerLayout
+        appBarConfiguration = AppBarConfiguration.Builder(topLevelDestinations)
+            .setOpenableLayout(drawerLayout)
+            .build()
 
         //setting up NavController & ActionBar
-        NavigationUI.setupWithNavController(binding.navView, navController)
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
+        NavigationUI.setupWithNavController(binding.navView, navController)
 
         //locking drawer for screens except shoe lists screen
         navController.addOnDestinationChangedListener{
                 _, nd: NavDestination, _ ->
-            if (nd.id == R.id.shoeListsFragment)
+            if (nd.id == R.id.shoeListsFragment) {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-            else
+            }
+            else {
                 drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            }
         }
 
         when(sharedPref.getInt(lastScreen, -1)) {
