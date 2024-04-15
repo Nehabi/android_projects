@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var sharedPref: SharedPreferences
-    private lateinit var drawerLayout: DrawerLayout
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,9 +33,6 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         //navigation
         navController = this.findNavController(R.id.navHostFragment)
 
-        //drawer layout - left menu
-        drawerLayout = binding.drawerLayout
-
         //list of to level destination to remove back button
         val topLevelDestinations: MutableSet<Int> = HashSet()
         topLevelDestinations.add(R.id.loginFragment)
@@ -44,29 +40,17 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
         topLevelDestinations.add(R.id.instructionsFragment)
         topLevelDestinations.add(R.id.shoeListsFragment)
         appBarConfiguration = AppBarConfiguration.Builder(topLevelDestinations)
-            .setOpenableLayout(drawerLayout)
             .build()
 
         //setting up NavController & ActionBar
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
         NavigationUI.setupWithNavController(binding.navView, navController)
 
-        //locking drawer for screens except shoe lists screen
-        navController.addOnDestinationChangedListener{
-                _, nd: NavDestination, _ ->
-            if (nd.id == R.id.shoeListsFragment) {
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-            }
-            else {
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-            }
-        }
-
+        //restore the last active screen
         when(sharedPref.getInt(lastScreen, -1)) {
             R.id.welcomeFragment -> navController.navigate(R.id.action_loginFragment_to_welcomeFragment)
             R.id.instructionsFragment -> navController.navigate(R.id.action_loginFragment_to_instructionsFragment)
             R.id.shoeListsFragment -> navController.navigate(R.id.action_loginFragment_to_shoeListsFragment)
-            R.id.shoeDetailsFragment -> navController.navigate(R.id.action_loginFragment_to_shoeDetailsFragment)
         }
     }
 
