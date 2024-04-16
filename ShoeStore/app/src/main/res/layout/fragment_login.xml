@@ -9,24 +9,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/email"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:drawableStart="@drawable/email"
+        <TextView
+            android:id="@+id/email_label"
+            android:text="@string/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            style="@style/TextView"/>
+
+        <EditText
+            android:id="@+id/email"
+            android:inputType="textEmailAddress"
+            android:drawableStart="@drawable/email"
+            app:layout_constraintEnd_toEndOf="@+id/email_label"
+            app:layout_constraintStart_toStartOf="@+id/email_label"
+            app:layout_constraintTop_toBottomOf="@+id/email_label"
             style="@style/EditBox"/>
+
+        <TextView
+            android:id="@+id/password_label"
+            android:text="@string/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/email"
+            app:layout_constraintStart_toStartOf="@+id/email"
+            app:layout_constraintTop_toBottomOf="@+id/email"
+            style="@style/TextView"/>
 
         <EditText
             android:id="@+id/password"
-            android:hint="@string/password"
             android:drawableStart="@drawable/password"
             android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email"
+            app:layout_constraintEnd_toEndOf="@+id/password_label"
+            app:layout_constraintStart_toStartOf="@+id/password_label"
+            app:layout_constraintTop_toBottomOf="@+id/password_label"
             style="@style/EditBox"/>
 
         <Button

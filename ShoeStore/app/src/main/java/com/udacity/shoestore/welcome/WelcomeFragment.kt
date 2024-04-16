@@ -18,10 +18,6 @@ class WelcomeFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Access the hosting Activity's ActionBar
-        val activity = activity as AppCompatActivity?
-        val actionBar = activity!!.supportActionBar
-        actionBar?.setDisplayHomeAsUpEnabled(false)
         val binding: FragmentWelcomeBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_welcome, container, false)
         binding.nextButton.setOnClickListener{

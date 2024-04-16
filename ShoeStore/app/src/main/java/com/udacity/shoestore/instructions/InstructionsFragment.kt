@@ -17,9 +17,6 @@ class InstructionsFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val activity = activity as AppCompatActivity?
-        val actionBar = activity!!.supportActionBar
-        actionBar?.setDisplayHomeAsUpEnabled(false)
         val binding: FragmentInstructionsBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_instructions, container, false)
         binding.nextButton.setOnClickListener{view ->

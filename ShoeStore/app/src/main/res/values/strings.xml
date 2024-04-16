@@ -3,19 +3,24 @@
     <string name="shoe_store">Shoe Store</string>
     <string name="shoe_lists">SHOE LISTS</string>
     <string name="shoe_details">SHOE DETAILS</string>
-    <string name="email">EMAIL</string>
-    <string name="password">PASSWORD</string>
+    <string name="email">ENTER EMAIL</string>
+    <string name="password">ENTER PASSWORD</string>
     <string name="login">LOGIN</string>
     <string name="register">REGISTER</string>
     <string name="instruction_msg">INSTRUCTIONS</string>
-    <string name="welcomeTextLine1">Welcome to Shoe Store, where your shoe shopping experience begins! Step into a world of style, comfort, and quality as you explore our diverse collection of footwear. Whether you\'re on the hunt for the latest fashion trends, seeking the perfect pair for a special occasion, or simply looking for everyday comfort, our store is your destination for all things footwear.
+    <string name="welcomeTextLine1">Welcome to Shoe Store, where your shoe listing experience begins! Step into a world of style, comfort, and quality as you explore our diverse collection of footwear. Whether you\'re on the hunt for the latest fashion trends, seeking the perfect pair for a special occasion, or simply looking for everyday comfort, our store is your destination for all things footwear.
     </string>
-    <string name="welcomeTextLine2">At Shoe Store, we pride ourselves on offering a curated selection of shoes that blend fashion and function. We invite you to embark on a journey of discovery, where every step you take brings you closer to the perfect pair of shoes. Welcome to the ultimate shoe shopping experience!
+    <string name="welcomeTextLine2">At Shoe Store, we pride ourselves on offering a curated selection of shoes that blend fashion and function. We invite you to embark on a journey of discovery, where every step you take brings you closer to the perfect pair of shoes.
     </string>
-    <string name="instructionTextLine1">Step into a shopping experience like no other at Shoe Store, where we\'ve not only curated an extensive range of footwear but also enhanced your shopping journey with user-friendly features. Explore the convenience of viewing a comprehensive list of shoes, each meticulously categorized to cater to various tastes and preferences. Our thoughtfully organized selection ensures that you can effortlessly browse through the latest styles or find timeless classics with ease.
+    <string name="instructionTextLine1">Step into a shopping experience like no other at Shoe Store, where we\'ve not only curated an extensive range of footwear but also enhanced your shopping journey with user-friendly features. Explore the convenience of viewing a comprehensive list of shoes, each meticulously categorized to cater to various tastes and preferences. Welcome to the ultimate shoe shopping experience!
     </string>
-    <string name="instructionTextLine2">But that\'s not all – we\'ve also empowered you to become a part of our growing shoe community. With just a few clicks, you can input details such as the shoe\'s name, size, description, brand, and even include an image. Welcome to a shoe shopping experience that goes beyond the ordinary – your journey starts here!
-    </string>
+    <string name="instructionTextLine2">
+        \nPlease follow the instructions below to add a new shoe:
+        \n1. Click on the add floating action button icon on the shoe list screen.
+        \n2. Add shoe details.
+        \n3. Ensure all values are of type String except for the size.
+        \n4. There are 11 images available for shoes. To use them, enter the shoe name following the pattern shoe1, shoe2, …, shoe11. If an invalid image name is entered, the default image will be shown.
+       </string>
     <string name="next">NEXT</string>
     <string name="add">+</string>
     <string name="shoe_name">SHOE NAME</string>
@@ -25,11 +30,11 @@
     <string name="welcome">WELCOME</string>
     <string name="logout">LOGOUT</string>
     <string name="logout_success">LOGOUT SUCCESSFUL</string>
-    <string name="enter_name">SHOE</string>
-    <string name="enter_image_name">IMAGE</string>
-    <string name="enter_company">COMPANY</string>
-    <string name="enter_description">DESCRIPTION</string>
-    <string name="enter_size">SIZE</string>
+    <string name="enter_name">ENTER SHOE NAME</string>
+    <string name="enter_image_name">ENTER IMAGE E.G. shoe1, shoe2 </string>
+    <string name="enter_company">ENTER BRAND NAME</string>
+    <string name="enter_description">ENTER DESCRIPTION</string>
+    <string name="enter_size">ENTER SHOE SIZE</string>
     <string name="submit">SUBMIT</string>
     <string name="cancel">CANCEL</string>
     <string name="add_new_shoe">Add new shoe</string>

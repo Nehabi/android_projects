@@ -15,59 +15,103 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/name"
-            android:hint="@string/enter_name"
-            android:inputType="text"
-            android:afterTextChanged="@{shoeDetailsModel.updateName}"
-            android:drawableStart="@drawable/shoe"
+        <TextView
+            android:id="@+id/shoe_label"
+            android:text="@string/enter_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            style="@style/TextView"/>
+
+        <EditText
+            android:id="@+id/name"
+            android:inputType="text"
+            android:afterTextChanged="@{shoeDetailsModel.updateName}"
+            android:drawableStart="@drawable/shoe"
+            app:layout_constraintEnd_toEndOf="@+id/shoe_label"
+            app:layout_constraintStart_toStartOf="@+id/shoe_label"
+            app:layout_constraintTop_toBottomOf="@+id/shoe_label"
             style="@style/EditBox"/>
+
+        <TextView
+            android:id="@+id/size_label"
+            android:text="@string/enter_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/name"
+            app:layout_constraintStart_toStartOf="@+id/name"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            style="@style/TextView"/>
 
         <EditText
             android:id="@+id/size"
-            android:hint="@string/enter_size"
             android:inputType="numberDecimal"
             android:afterTextChanged="@{shoeDetailsModel.updateSize}"
             android:drawableStart="@drawable/size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name"
+            app:layout_constraintEnd_toEndOf="@+id/size_label"
+            app:layout_constraintStart_toStartOf="@+id/size_label"
+            app:layout_constraintTop_toBottomOf="@+id/size_label"
             style="@style/EditBox"/>
+
+        <TextView
+            android:id="@+id/company_label"
+            android:text="@string/enter_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/size"
+            app:layout_constraintStart_toStartOf="@+id/size"
+            app:layout_constraintTop_toBottomOf="@+id/size"
+            style="@style/TextView"/>
 
         <EditText
             android:id="@+id/company"
-            android:hint="@string/enter_company"
             android:inputType="text"
             android:afterTextChanged="@{shoeDetailsModel.updateCompany}"
             android:drawableStart="@drawable/company"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/size"
+            app:layout_constraintEnd_toEndOf="@+id/company_label"
+            app:layout_constraintStart_toStartOf="@+id/company_label"
+            app:layout_constraintTop_toBottomOf="@+id/company_label"
             style="@style/EditBox"/>
+
+        <TextView
+            android:id="@+id/description_label"
+            android:text="@string/enter_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/company"
+            app:layout_constraintStart_toStartOf="@+id/company"
+            app:layout_constraintTop_toBottomOf="@+id/company"
+            style="@style/TextView"/>
 
         <EditText
             android:id="@+id/description"
-            android:hint="@string/enter_description"
             android:inputType="textMultiLine"
             android:afterTextChanged="@{shoeDetailsModel.updateDescription}"
             android:drawableStart="@drawable/description"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/company"
+            app:layout_constraintEnd_toEndOf="@+id/description_label"
+            app:layout_constraintStart_toStartOf="@+id/description_label"
+            app:layout_constraintTop_toBottomOf="@+id/description_label"
             style="@style/EditBox"/>
+
+        <TextView
+            android:id="@+id/image_label"
+            android:text="@string/enter_image_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/description"
+            app:layout_constraintStart_toStartOf="@+id/description"
+            app:layout_constraintTop_toBottomOf="@+id/description"
+            style="@style/TextView"/>
 
         <EditText
             android:id="@+id/image"
-            android:hint="@string/enter_image_name"
             android:afterTextChanged="@{shoeDetailsModel.updateImage}"
             android:drawableStart="@drawable/image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description"
+            app:layout_constraintEnd_toEndOf="@+id/image_label"
+            app:layout_constraintStart_toStartOf="@+id/image_label"
+            app:layout_constraintTop_toBottomOf="@+id/image_label"
             style="@style/EditBox"/>
 
         <Button
