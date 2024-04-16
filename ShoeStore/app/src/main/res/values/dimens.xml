@@ -10,4 +10,5 @@
     <dimen name="itemTextView">20sp</dimen>
     <dimen name="drawablePadding">10sp</dimen>
     <dimen name="descriptionTextSize">20sp</dimen>
+    <dimen name="headingTextSize">30sp</dimen>
 </resources>

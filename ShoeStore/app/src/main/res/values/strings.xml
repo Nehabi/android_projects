@@ -8,15 +8,14 @@
     <string name="login">LOGIN</string>
     <string name="register">REGISTER</string>
     <string name="instruction_msg">INSTRUCTIONS</string>
-    <string name="welcomeTextLine1">Welcome to Shoe Store, where your shoe listing experience begins! Step into a world of style, comfort, and quality as you explore our diverse collection of footwear. Whether you\'re on the hunt for the latest fashion trends, seeking the perfect pair for a special occasion, or simply looking for everyday comfort, our store is your destination for all things footwear.
+    <string name="welcomeTextLine1">Welcome to Shoe Store!
     </string>
-    <string name="welcomeTextLine2">At Shoe Store, we pride ourselves on offering a curated selection of shoes that blend fashion and function. We invite you to embark on a journey of discovery, where every step you take brings you closer to the perfect pair of shoes.
+    <string name="welcomeTextLine2">At Shoe Store, you can customize and add any new shoes to your collection. You have the freedom to personalize the name, size, brand, description, and image of each shoe. Additionally, you can explore and check the list of previously stored shoes. \n\nWelcome to the ultimate and unparalleled shoe shopping experience!
     </string>
-    <string name="instructionTextLine1">Step into a shopping experience like no other at Shoe Store, where we\'ve not only curated an extensive range of footwear but also enhanced your shopping journey with user-friendly features. Explore the convenience of viewing a comprehensive list of shoes, each meticulously categorized to cater to various tastes and preferences. Welcome to the ultimate shoe shopping experience!
+    <string name="instructionTextLine1">Steps to add a new shoe
     </string>
     <string name="instructionTextLine2">
-        \nPlease follow the instructions below to add a new shoe:
-        \n1. Click on the add floating action button icon on the shoe list screen.
+        1. Click on the add floating action button icon on the shoe list screen.
         \n2. Add shoe details.
         \n3. Ensure all values are of type String except for the size.
         \n4. There are 11 images available for shoes. To use them, enter the shoe name following the pattern shoe1, shoe2, …, shoe11. If an invalid image name is entered, the default image will be shown.

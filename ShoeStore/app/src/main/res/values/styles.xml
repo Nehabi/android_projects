@@ -17,9 +17,7 @@
         <item name="android:layout_margin">@dimen/layout_margin</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/roboto_light</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">@dimen/textViewSize</item>
     </style>
     <style name="EditBox">
@@ -51,7 +49,7 @@
     <style name="itemTextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">@dimen/itemTextView</item>
         <item name="android:drawablePadding">@dimen/drawablePadding</item>
         <item name="android:singleLine">false</item>
@@ -59,8 +57,16 @@
     <style name="descriptionTextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">@dimen/descriptionTextSize</item>
+        <item name="android:layout_margin">@dimen/layout_margin</item>
+        <item name="android:layout_marginTop">@dimen/top_margin</item>
+    </style>
+    <style name="heading">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">@dimen/headingTextSize</item>
         <item name="android:layout_margin">@dimen/layout_margin</item>
         <item name="android:layout_marginTop">@dimen/top_margin</item>
     </style>
