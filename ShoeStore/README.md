@@ -9,4 +9,5 @@ This project will consist of five screens. You don't have to create a shoe store
 5. Shoe Detail screen for adding a new shoe
 
 # Video
-[Screen Recording 2024-04-15 at 8.43.36 PM.mov](..%2F..%2FScreen%20Recording%202024-04-15%20at%208.43.36%20PM.mov)
+https://github.com/Nehabi/android_projects/assets/13838898/8c471ad3-a8dd-434d-b510-580de8f3f39a
+
