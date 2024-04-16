@@ -21,11 +21,12 @@
         <item name="android:textSize">@dimen/textViewSize</item>
     </style>
     <style name="EditBox">
-        <item name="android:layout_marginLeft">@dimen/layout_margin</item>
+        <item name="android:layout_marginLeft">@dimen/editText_left_margin</item>
         <item name="android:layout_marginRight">@dimen/layout_margin</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:drawablePadding">@dimen/drawablePadding</item>
         <item name="android:textSize">@dimen/editTextSize</item>
     </style>
     <style name="small_button">

@@ -40,7 +40,7 @@
 
         <EditText
             android:id="@+id/password"
-            android:drawableStart="@drawable/password"
+            android:drawableLeft="@drawable/password"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="@+id/password_label"
             app:layout_constraintStart_toStartOf="@+id/password_label"
