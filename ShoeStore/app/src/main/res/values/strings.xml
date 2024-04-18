@@ -18,7 +18,7 @@
         1. Click on the add floating action button icon on the shoe list screen.
         \n2. Add shoe details like name, size, brand, description andgit image.
         \n3. Ensure all values are of type String except for the size.
-        \n4. There are 11 images available for shoes. To use them, enter the shoe name following the pattern shoe1, shoe2, …, shoe11. If an invalid image name is entered, the default image will be shown.
+        \n4. There are 10 images available for shoes. To use them, enter the shoe name following the pattern shoe1,shoe2,shoe3 …, shoe10. If an invalid image name is entered, the default image will be shown.
         \n5. To add more than one image, separate them by comma. For example, "shoe1, shoe2", etc.
        </string>
     <string name="next">NEXT</string>

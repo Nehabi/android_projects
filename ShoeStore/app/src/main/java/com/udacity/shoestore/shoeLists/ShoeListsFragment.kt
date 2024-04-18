@@ -119,10 +119,6 @@ class ShoeListsFragment : Fragment() {
             "shoe8" -> R.drawable.shoe8
             "shoe9" -> R.drawable.shoe9
             "shoe10" -> R.drawable.shoe10
-            "shoe11" -> R.drawable.shoe11
-            "shoe12" -> R.drawable.shoe12
-            "shoe13" -> R.drawable.shoe13
-            "shoe14" -> R.drawable.shoe14
             else -> {
                 R.drawable.shoe1
             }
