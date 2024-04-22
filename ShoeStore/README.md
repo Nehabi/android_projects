@@ -8,6 +8,4 @@ This project will consist of five screens. You don't have to create a shoe store
 4. Shoe Listing screen
 5. Shoe Detail screen for adding a new shoe
 
-# Video
-https://github.com/Nehabi/android_projects/assets/13838898/8c471ad3-a8dd-434d-b510-580de8f3f39a
 
