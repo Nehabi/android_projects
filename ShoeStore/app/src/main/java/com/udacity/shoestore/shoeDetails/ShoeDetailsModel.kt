@@ -1,32 +1,33 @@
 package com.udacity.shoestore.shoeDetails
 
-import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import timber.log.Timber
+import java.lang.Exception
 
 class ShoeDetailsModel: ViewModel() {
-    private var _name = MutableLiveData<String>()
+    var _name = MutableLiveData<String>()
     val name: LiveData<String>
         get() = _name
 
-    private val _size = MutableLiveData<Float>()
-    val size: LiveData<Float>
+    var _size = MutableLiveData<String>()
+    val size: LiveData<String>
         get() = _size
 
-    private val _description = MutableLiveData<String>()
+    var _description = MutableLiveData<String>()
     val description: LiveData<String>
         get() = _description
 
-    private val _company = MutableLiveData<String>()
+    var _company = MutableLiveData<String>()
     val company: LiveData<String>
         get() = _company
 
-    private val _image = MutableLiveData<String>()
+    var _image = MutableLiveData<String>()
     val image: LiveData<String>
         get() = _image
 
-    private val _toastMessage = MutableLiveData<String>()
+    var _toastMessage = MutableLiveData<String>()
     val toastMessage: LiveData<String>
         get() = _toastMessage
 
@@ -44,55 +45,48 @@ class ShoeDetailsModel: ViewModel() {
     }
 
     fun onSubmitClick() {
-        if(_name.value.isNullOrEmpty()) {
+        if(name.value == null) {
             showToast("Please enter a valid name")
             return
         }
-        if(_size.value == null) {
+        if(size.value == null || !isValidSize()) {
             showToast("Please enter a valid size")
             return
         }
-        if(_company.value.isNullOrEmpty()) {
+        if(company.value == null) {
             showToast("Please enter a valid company")
             return
         }
-        if(_description.value.isNullOrEmpty()) {
+        if(description.value == null) {
             showToast("Please enter a valid description")
             return
         }
-        if(_image.value.isNullOrEmpty()) {
+        if(image.value == null) {
             showToast("Please enter a valid image path")
             return
         }
         _onSuccess.value = true
     }
 
+    private fun isValidSize(): Boolean {
+        try {
+            size.value.toString().toFloat()
+        } catch (exception : Exception) {
+            Timber.e(exception)
+            return false
+        }
+        return true
+    }
+
     fun onCancel() {
         _onCancel.value = true
     }
-
 
     private fun showToast(message: String) {
         _toastMessage.value = message
     }
 
-    fun updateName(s: Editable) {
-        _name.value = s.toString()
-    }
-
-    fun updateCompany(s: Editable) {
-        _company.value = s.toString()
-    }
-
-    fun updateDescription(s: Editable) {
-        _description.value = s.toString()
-    }
-
-    fun updateImage(s: Editable) {
-        _image.value = s.toString()
-    }
-
-    fun updateSize(s: Editable) {
-        _size.value = s.toString().toFloat()
+    fun setSuccess(value: Boolean) {
+        _onSuccess.value = value
     }
 }

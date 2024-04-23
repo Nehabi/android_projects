@@ -71,8 +71,7 @@
             app:nullable="true" />
         <argument
             android:name="size"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="float" />
         <argument
             android:name="company"
             app:argType="string"

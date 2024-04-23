@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeDetailsBinding
 
 class ShoeDetailsFragment: Fragment() {
-    private lateinit var shoeDetailsModel : ShoeDetailsModel
+    private val shoeDetailsModel : ShoeDetailsModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,9 +29,8 @@ class ShoeDetailsFragment: Fragment() {
             false
         )
 
-        shoeDetailsModel = ViewModelProvider(this)[ShoeDetailsModel::class.java]
-
         binding.shoeDetailsModel = shoeDetailsModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         shoeDetailsModel.toastMessage.observe(viewLifecycleOwner) { message ->
             Toast.makeText(this.context, message, Toast.LENGTH_SHORT).show()
@@ -40,19 +40,19 @@ class ShoeDetailsFragment: Fragment() {
             if(value){
                 this.findNavController()
                     .navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListsFragment(
-                        shoeDetailsModel.name.value.toString(),
-                        shoeDetailsModel.size.value.toString(),
-                        shoeDetailsModel.company.value.toString(),
-                        shoeDetailsModel.description.value.toString(),
-                        shoeDetailsModel.image.value.toString()
-                        ))
+                        binding.name.text.toString(),
+                        binding.size.text.toString().toFloat(),
+                        binding.company.text.toString(),
+                        binding.description.text.toString(),
+                        binding.image.text.toString()))
+                shoeDetailsModel.setSuccess(false)
             }
         }
 
         shoeDetailsModel.onCancel.observe(viewLifecycleOwner) { value ->
             if(value) {
                 this.findNavController()
-                    .navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListsFragment(null, null, null, null, null))
+                    .navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListsFragment(null, 0.0F, null, null, null))
             }
         }
 

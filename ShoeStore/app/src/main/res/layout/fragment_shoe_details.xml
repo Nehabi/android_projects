@@ -28,7 +28,7 @@
         <EditText
             android:id="@+id/name"
             android:inputType="text"
-            android:afterTextChanged="@{shoeDetailsModel.updateName}"
+            android:text="@={shoeDetailsModel._name}"
             android:drawableStart="@drawable/shoe"
             app:layout_constraintEnd_toEndOf="@+id/shoe_label"
             app:layout_constraintStart_toStartOf="@+id/shoe_label"
@@ -48,7 +48,7 @@
         <EditText
             android:id="@+id/size"
             android:inputType="numberDecimal"
-            android:afterTextChanged="@{shoeDetailsModel.updateSize}"
+            android:text="@={shoeDetailsModel._size}"
             android:drawableStart="@drawable/size"
             app:layout_constraintEnd_toEndOf="@+id/size_label"
             app:layout_constraintStart_toStartOf="@+id/size_label"
@@ -68,7 +68,7 @@
         <EditText
             android:id="@+id/company"
             android:inputType="text"
-            android:afterTextChanged="@{shoeDetailsModel.updateCompany}"
+            android:text="@={shoeDetailsModel._company}"
             android:drawableStart="@drawable/company"
             app:layout_constraintEnd_toEndOf="@+id/company_label"
             app:layout_constraintStart_toStartOf="@+id/company_label"
@@ -88,7 +88,7 @@
         <EditText
             android:id="@+id/description"
             android:inputType="textMultiLine"
-            android:afterTextChanged="@{shoeDetailsModel.updateDescription}"
+            android:text="@={shoeDetailsModel._description}"
             android:drawableStart="@drawable/description"
             app:layout_constraintEnd_toEndOf="@+id/description_label"
             app:layout_constraintStart_toStartOf="@+id/description_label"
@@ -107,7 +107,7 @@
 
         <EditText
             android:id="@+id/image"
-            android:afterTextChanged="@{shoeDetailsModel.updateImage}"
+            android:text="@={shoeDetailsModel._image}"
             android:drawableStart="@drawable/image"
             app:layout_constraintEnd_toEndOf="@+id/image_label"
             app:layout_constraintStart_toStartOf="@+id/image_label"

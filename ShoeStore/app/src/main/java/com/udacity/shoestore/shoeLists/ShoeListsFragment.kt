@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -18,11 +19,12 @@ import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.models.SlideModel
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeListsBinding
+import com.udacity.shoestore.databinding.ItemShoeBinding
 import com.udacity.shoestore.models.Shoe
 
 
 class ShoeListsFragment : Fragment() {
-    private lateinit var shoeListsViewModel: ShoeListsViewModel
+    private val shoeListsViewModel: ShoeListsViewModel by activityViewModels()
     private lateinit var binding: FragmentShoeListsBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,8 +41,6 @@ class ShoeListsFragment : Fragment() {
             view.findNavController().navigate(ShoeListsFragmentDirections.actionShoeListsFragmentToShoeDetailsFragment())
         }
 
-        shoeListsViewModel = ViewModelProvider(requireActivity(), ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(ShoeListsViewModel::class.java)
-
         binding.shoeListsViewModel = shoeListsViewModel
 
         if(arguments != null && requireArguments().containsKey("name")) {
@@ -49,7 +49,7 @@ class ShoeListsFragment : Fragment() {
                 addShoe(
                     Shoe(
                         args.name.toString(),
-                        args.size!!.toDouble(),
+                        args.size.toDouble(),
                         args.company.toString(),
                         args.decription.toString(),
                         args.images.toString().split(',')
@@ -59,32 +59,39 @@ class ShoeListsFragment : Fragment() {
         }
 
         setShoeLists()
-
+        setHasOptionsMenu(true)
         return binding.root
     }
 
     private fun setShoeLists() {
-        val myLayout: LinearLayout = binding.shoeList
-        for (i in shoeListsViewModel.shoeList) {
-            val myButton = View.inflate(context, R.layout.item_shoe, null)
-            val imagesLists = i.images
+        for (item in shoeListsViewModel.shoeList) {
+            val shoeItemBiding = ItemShoeBinding.inflate(layoutInflater,
+                                                    null,
+                                             false)
+
+            val shoe = Shoe(item.name,
+                            item.size,
+                            item.company,
+                            item.description,
+                            item.images)
+            shoeItemBiding.shoe = shoe
+
+            //setting image list as the library used doesn't support to set the image list from XML
             val imageList = ArrayList<SlideModel>()
-            for(i in imagesLists)
+            for(img in item.images)
             {
-                imageList.add(SlideModel(findId(i)))
+                imageList.add(SlideModel(findId(img)))
             }
-            val imageSlider = myButton.findViewById<ImageSlider>(R.id.shoeImage)
-            imageSlider.setImageList(imageList)
-            myButton.findViewById<TextView>(R.id.shoeName).text = i.name
-            myButton.findViewById<TextView>(R.id.shoeSize).text = i.size.toString()
-            myButton.findViewById<TextView>(R.id.shoeBrand).text = i.company
-            myButton.findViewById<TextView>(R.id.shoeDescription).text = i.description
-            myButton.layoutParams = LinearLayout.LayoutParams(
+            shoeItemBiding.shoeImage.setImageList(imageList)
+
+            //setting layout parameters
+            shoeItemBiding.root.layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
-            setHasOptionsMenu(true)
-            myLayout.addView(myButton)
+
+            //binding the item to the list
+            binding.shoeList.addView(shoeItemBiding.root)
         }
     }
 
