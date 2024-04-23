@@ -7,8 +7,10 @@
     <data>
         <variable
             name="shoeListsViewModel"
-            type="com.udacity.shoestore.shoeLists.ShoeListsViewModel" />
+            type="com.udacity.shoestore.models.ShoeViewModel" />
     </data>
+
+    <!-- To handle NestedScrollView and FloatingActionButton I used CoordinatorLayout-->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,22 +19,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
+            <LinearLayout
                     android:id="@+id/shoeList"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="visible"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-                </LinearLayout>
+                    android:visibility="visible">
+            </LinearLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

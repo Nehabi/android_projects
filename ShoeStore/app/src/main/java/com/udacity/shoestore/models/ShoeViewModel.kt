@@ -1,12 +1,17 @@
-package com.udacity.shoestore.shoeDetails
+package com.udacity.shoestore.models
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.udacity.shoestore.models.Shoe
 import timber.log.Timber
 import java.lang.Exception
 
-class ShoeDetailsModel: ViewModel() {
+class ShoeViewModel: ViewModel() {
+    private lateinit var _shoeList : MutableList<Shoe>
+    val shoeList : MutableList<Shoe>
+        get() = _shoeList
+
     var _name = MutableLiveData<String>()
     val name: LiveData<String>
         get() = _name
@@ -42,6 +47,7 @@ class ShoeDetailsModel: ViewModel() {
     init {
         _onSuccess.value = false
         _onCancel.value = false
+        setShoeList()
     }
 
     fun onSubmitClick() {
@@ -95,5 +101,16 @@ class ShoeDetailsModel: ViewModel() {
         _toastMessage.value = ""
         _onCancel.value = false
         _onSuccess.value = false
+    }
+
+    private fun setShoeList() {
+        _shoeList = mutableListOf(
+            Shoe("Nike AIR", 6.5, "Nike", "Nike new shoes", listOf("shoe1", "shoe2")),
+
+        )
+    }
+
+    fun addShoe(s: Shoe) {
+       _shoeList.add(s)
     }
 }

@@ -8,9 +8,13 @@
     <data>
         <variable
             name="shoeDetailsModel"
-            type="com.udacity.shoestore.shoeDetails.ShoeDetailsModel" />
+            type="com.udacity.shoestore.models.ShoeViewModel" />
     </data>
 
+    <!-- I used ConstraintLayout here to avoid adding nested LinearLayouts.
+         Otherwise, I would need to include one vertical LinearLayout
+         containing a horizontal LinearLayout inside it to handle the
+         submit and cancel buttons. -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

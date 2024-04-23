@@ -8,23 +8,21 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.models.SlideModel
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeListsBinding
 import com.udacity.shoestore.databinding.ItemShoeBinding
 import com.udacity.shoestore.models.Shoe
+import com.udacity.shoestore.models.ShoeViewModel
 
 
 class ShoeListsFragment : Fragment() {
-    private val shoeListsViewModel: ShoeListsViewModel by activityViewModels()
+    private val shoeViewModel: ShoeViewModel by activityViewModels()
     private lateinit var binding: FragmentShoeListsBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,21 +39,17 @@ class ShoeListsFragment : Fragment() {
             view.findNavController().navigate(ShoeListsFragmentDirections.actionShoeListsFragmentToShoeDetailsFragment())
         }
 
-        binding.shoeListsViewModel = shoeListsViewModel
+        binding.shoeListsViewModel = shoeViewModel
 
-        if(arguments != null && requireArguments().containsKey("name")) {
-            val args = ShoeListsFragmentArgs.fromBundle(requireArguments())
-            if (!args.name.isNullOrEmpty()) {
-                addShoe(
-                    Shoe(
-                        args.name.toString(),
-                        args.size.toDouble(),
-                        args.company.toString(),
-                        args.decription.toString(),
-                        args.images.toString().split(',')
-                    ),
-                )
-            }
+
+        if (!shoeViewModel.name.value.isNullOrEmpty()) {
+            addShoe(Shoe(
+                shoeViewModel.name.value!!,
+                shoeViewModel.size.value!!.toDouble(),
+                shoeViewModel.company.value!!,
+                shoeViewModel.description.value!!,
+                shoeViewModel.image.value!!.split(',')))
+            shoeViewModel.resetValues()
         }
 
         setShoeLists()
@@ -64,7 +58,7 @@ class ShoeListsFragment : Fragment() {
     }
 
     private fun setShoeLists() {
-        for (item in shoeListsViewModel.shoeList) {
+        for (item in shoeViewModel.shoeList) {
             val shoeItemBiding = ItemShoeBinding.inflate(layoutInflater,
                                                     null,
                                              false)
@@ -97,7 +91,7 @@ class ShoeListsFragment : Fragment() {
 
 
     private fun addShoe(s: Shoe) {
-        shoeListsViewModel.addShoe(s)
+        shoeViewModel.addShoe(s)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

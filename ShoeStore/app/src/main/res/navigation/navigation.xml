@@ -65,25 +65,6 @@
             app:popEnterAnim="@anim/slide_in_right"
             app:popUpTo="@id/shoeDetailsFragment"
             app:popUpToInclusive="true" />
-        <argument
-            android:name="name"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="size"
-            app:argType="float" />
-        <argument
-            android:name="company"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="decription"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="images"
-            app:argType="string"
-            app:nullable="true" />
         <action
             android:id="@+id/action_shoeListsFragment_to_loginFragment"
             app:destination="@id/loginFragment"
