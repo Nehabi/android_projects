@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
             R.id.welcomeFragment -> navController.navigate(R.id.action_loginFragment_to_welcomeFragment)
             R.id.instructionsFragment -> navController.navigate(R.id.action_loginFragment_to_instructionsFragment)
             R.id.shoeListsFragment -> navController.navigate(R.id.action_loginFragment_to_shoeListsFragment)
+            R.id.shoeDetailsFragment -> navController.navigate(R.id.action_loginFragment_to_shoeListsFragment)
         }
     }
 
@@ -61,6 +62,11 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
     override fun onBackPressed() {
         navController.currentDestination?.let { saveState(it.id) }
         super.onBackPressed()
+    }
+
+    override fun onStop() {
+        navController.currentDestination?.let { saveState(it.id) }
+        super.onStop()
     }
 
     private fun saveState(lastScreenId: Int) {
