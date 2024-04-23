@@ -33,7 +33,9 @@ class ShoeDetailsFragment: Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         shoeDetailsModel.toastMessage.observe(viewLifecycleOwner) { message ->
-            Toast.makeText(this.context, message, Toast.LENGTH_SHORT).show()
+            if(message.isNotBlank()) {
+                Toast.makeText(this.context, message, Toast.LENGTH_SHORT).show()
+            }
         }
 
         shoeDetailsModel.onSuccess.observe(viewLifecycleOwner) { value ->
@@ -45,7 +47,7 @@ class ShoeDetailsFragment: Fragment() {
                         binding.company.text.toString(),
                         binding.description.text.toString(),
                         binding.image.text.toString()))
-                shoeDetailsModel.setSuccess(false)
+                shoeDetailsModel.resetValues()
             }
         }
 
@@ -53,6 +55,7 @@ class ShoeDetailsFragment: Fragment() {
             if(value) {
                 this.findNavController()
                     .navigate(ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListsFragment(null, 0.0F, null, null, null))
+                shoeDetailsModel.resetValues()
             }
         }
 

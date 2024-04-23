@@ -45,23 +45,23 @@ class ShoeDetailsModel: ViewModel() {
     }
 
     fun onSubmitClick() {
-        if(name.value == null) {
+        if(name.value.isNullOrEmpty()) {
             showToast("Please enter a valid name")
             return
         }
-        if(size.value == null || !isValidSize()) {
+        if(size.value.isNullOrEmpty() || !isValidSize()) {
             showToast("Please enter a valid size")
             return
         }
-        if(company.value == null) {
+        if(company.value.isNullOrEmpty()) {
             showToast("Please enter a valid company")
             return
         }
-        if(description.value == null) {
+        if(description.value.isNullOrEmpty()) {
             showToast("Please enter a valid description")
             return
         }
-        if(image.value == null) {
+        if(image.value.isNullOrEmpty()) {
             showToast("Please enter a valid image path")
             return
         }
@@ -86,7 +86,14 @@ class ShoeDetailsModel: ViewModel() {
         _toastMessage.value = message
     }
 
-    fun setSuccess(value: Boolean) {
-        _onSuccess.value = value
+    fun resetValues() {
+        _name.value = ""
+        _size.value = ""
+        _description.value = ""
+        _company.value = ""
+        _image.value = ""
+        _toastMessage.value = ""
+        _onCancel.value = false
+        _onSuccess.value = false
     }
 }
