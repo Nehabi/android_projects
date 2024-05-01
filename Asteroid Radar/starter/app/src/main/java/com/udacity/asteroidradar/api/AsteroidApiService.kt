@@ -4,7 +4,6 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.udacity.asteroidradar.Constants.API_KEY
 import com.udacity.asteroidradar.Constants.BASE_URL
-import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
@@ -23,7 +22,8 @@ private val retrofit = Retrofit.Builder()
 
 interface RadarApiService {
     @GET("neo/rest/v1/feed")
-    suspend fun getProperties(@Query("api_key") apiKey: String = API_KEY): String
+    suspend fun getAsteroidLists(@Query("api_key") apiKey: String = API_KEY,
+                                 @Query("start_date") startDate:String): String
 }
 
 object RadarApi {

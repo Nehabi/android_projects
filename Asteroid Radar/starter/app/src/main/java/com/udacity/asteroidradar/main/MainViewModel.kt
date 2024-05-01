@@ -10,6 +10,9 @@ import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.database.AsteroidDao
 import kotlinx.coroutines.launch
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 import kotlin.Exception
 
 class MainViewModel(val database: AsteroidDao,
@@ -27,7 +30,11 @@ class MainViewModel(val database: AsteroidDao,
     private fun getAsteroidsLists() {
         viewModelScope.launch {
             try {
-                var asteroidlist = RadarApi.retrofitService.getProperties()
+                val currentDate =  Calendar.getInstance().time
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val startDate = dateFormat.format(currentDate).toString()
+                Log.d("testing data", startDate)
+                var asteroidlist = RadarApi.retrofitService.getAsteroidLists(startDate = startDate)
                 val list = parseAsteroidsJsonResult(JSONObject(asteroidlist))
                 for(item in list) {
                     insertInDB(item)

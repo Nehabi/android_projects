@@ -39,8 +39,6 @@ class MainFragment : Fragment() {
         })
 
         setHasOptionsMenu(true)
-        //setList()
-
         return binding.root
     }
 
