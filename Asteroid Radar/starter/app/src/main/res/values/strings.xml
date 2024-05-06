@@ -14,4 +14,9 @@
     <string name="km_s_unit_format">%f km/s</string>
     <string name="image_of_the_day">Image of the Day</string>
     <string name="astronomica_unit_explanation">The astronomical unit (au) is a unit of length, roughly the distance from Earth to the Sun and equal to about 150 million kilometres (93 million miles)</string>
+    <string name="hazardous_image">Potentially Hazardous Asteroid Image</string>
+    <string name="non_hazardous_image">Not Hazardous Asteroid Image</string>
+    <string name="help_button">Help Button</string>
+    <string name="sad_emoji">Sad Emoji Image</string>
+    <string name="happy_emoji">Happy Emoji Image</string>
 </resources>

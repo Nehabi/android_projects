@@ -13,6 +13,7 @@ import java.util.Locale
 class AsteroidRepository(private val database: AsteroidDatabase) {
     var asteroidList = database.asteroidDao.getAsteroids()
     suspend fun refreshAsteroids() {
+        database.asteroidDao.deleteAsteroids()
         val currentDate =  Calendar.getInstance().time
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val startDate = dateFormat.format(currentDate).toString()

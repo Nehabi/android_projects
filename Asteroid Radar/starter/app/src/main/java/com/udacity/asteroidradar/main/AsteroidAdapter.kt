@@ -2,6 +2,7 @@ package com.udacity.asteroidradar.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,10 @@ class AsteroidAdapter(val clickListener: AsteroidListener): ListAdapter<Asteroid
         fun bind(item: Asteroid, clickListener: AsteroidListener) {
             binding.asteroid = item
             binding.clickListener = clickListener
+            binding.root.layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
             binding.executePendingBindings()
         }
 

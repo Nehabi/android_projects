@@ -3,6 +3,7 @@ package com.udacity.asteroidradar.database
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -25,4 +26,7 @@ interface AsteroidDao {
 
     @Query("SELECT * FROM ${Constants.ASTEROID_DB_TABLE_NAME} WHERE id=:asteroidId")
     fun getAsteroid(asteroidId: Long): Asteroid
+
+    @Query ("DELETE FROM ${Constants.ASTEROID_DB_TABLE_NAME}")
+    suspend fun deleteAsteroids()
 }

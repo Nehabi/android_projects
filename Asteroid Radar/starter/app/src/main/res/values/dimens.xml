@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="layout_margin">10dp</dimen>
+    <dimen name="editText_left_margin">5dp</dimen>
+    <dimen name="top_margin">24dp</dimen>
+    <dimen name="fill_space">0dp</dimen>
+    <dimen name="editTextSize">18sp</dimen>
+    <dimen name="textViewSize">15sp</dimen>
+    <dimen name="iconWidth">25sp</dimen>
+    <dimen name="iconHeight">25sp</dimen>
+    <dimen name="itemTextView">20sp</dimen>
+    <dimen name="drawablePadding">10sp</dimen>
+    <dimen name="descriptionTextSize">20sp</dimen>
+    <dimen name="headingTextSize">25sp</dimen>
+</resources>
