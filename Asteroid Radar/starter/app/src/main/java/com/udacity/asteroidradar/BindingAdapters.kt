@@ -1,8 +1,14 @@
 package com.udacity.asteroidradar
 
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.LiveData
+import com.bumptech.glide.Glide
+import com.udacity.asteroidradar.main.AsteroidApiStatus
 
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
@@ -38,4 +44,32 @@ fun bindTextViewToKmUnit(textView: TextView, number: Double) {
 fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
     val context = textView.context
     textView.text = String.format(context.getString(R.string.km_s_unit_format), number)
+}
+
+@BindingAdapter("pictureOfDay")
+fun bindImage(imgView: ImageView, imgUrl: String?) {
+    imgUrl?.let {
+        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
+        Glide.with(imgView.context)
+            .load(imgUri)
+            .placeholder(R.drawable.placeholder_picture_of_day)
+            .error(R.drawable.placeholder_picture_of_day)
+            .into(imgView)
+
+    }
+}
+
+@BindingAdapter("asteroidApiStatus")
+fun bindAsteroidApiStatus(statusImageView: ProgressBar, status: AsteroidApiStatus) {
+    when (status) {
+        AsteroidApiStatus.LOADING -> {
+            statusImageView.visibility = View.VISIBLE
+        }
+        AsteroidApiStatus.ERROR -> {
+            statusImageView.visibility = View.VISIBLE
+        }
+        AsteroidApiStatus.DONE -> {
+            statusImageView.visibility = View.GONE
+        }
+    }
 }

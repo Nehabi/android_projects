@@ -1,47 +1,57 @@
 package com.udacity.asteroidradar.main
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.udacity.asteroidradar.Asteroid
+import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.api.RadarApi
-import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
-import com.udacity.asteroidradar.database.AsteroidDao
+import com.udacity.asteroidradar.database.AsteroidDatabase
+import com.udacity.asteroidradar.repository.AsteroidRepository
 import kotlinx.coroutines.launch
-import org.json.JSONObject
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
-import kotlin.Exception
 
-class MainViewModel(val database: AsteroidDao,
-                    application: Application) : AndroidViewModel(application) {
-    var asteroid_list = database.getAsteroids()
+enum class AsteroidApiStatus { LOADING, ERROR, DONE }
+class MainViewModel(application: Application) : AndroidViewModel(application) {
+    private var _imageOfDay = MutableLiveData<PictureOfDay>()
+    val imageOfDay
+        get() = _imageOfDay
+
+    private var _navigateToAsteroid = MutableLiveData<Asteroid?>()
+    val navigateToAsteroid
+        get() = _navigateToAsteroid
+
+    private val _asteroidApiStatus = MutableLiveData<AsteroidApiStatus>()
+    val asteroidApiStatus: LiveData<AsteroidApiStatus>
+        get() = _asteroidApiStatus
+
+    private val asteroidDatabase = AsteroidDatabase.getInstance(getApplication())
+
+    private val asteroidRepository = AsteroidRepository(asteroidDatabase)
 
     init {
-        getAsteroidsLists()
-    }
-
-    private suspend fun insertInDB(asteroid: Asteroid) {
-        database.insertAsteroids(asteroid)
-    }
-
-    private fun getAsteroidsLists() {
+        _asteroidApiStatus.value = AsteroidApiStatus.LOADING
         viewModelScope.launch {
-            try {
-                val currentDate =  Calendar.getInstance().time
-                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-                val startDate = dateFormat.format(currentDate).toString()
-                Log.d("testing data", startDate)
-                var asteroidlist = RadarApi.retrofitService.getAsteroidLists(startDate = startDate)
-                val list = parseAsteroidsJsonResult(JSONObject(asteroidlist))
-                for(item in list) {
-                    insertInDB(item)
-                }
-            } catch (exception: Exception) {
-                Log.e("testing", exception.toString())
-            }
+            asteroidRepository.refreshAsteroids()
+            getImageOfDay()
+            _asteroidApiStatus.value = AsteroidApiStatus.DONE
         }
+    }
+
+    var asteroidList = asteroidRepository.asteroidList
+
+    private fun getImageOfDay() {
+        viewModelScope.launch {
+            imageOfDay.value = RadarApi.retrofitService.getImageOfDay()
+        }
+    }
+
+    fun onAsteroidClicked(asteroid: Asteroid) {
+        _navigateToAsteroid.value = asteroid
+    }
+
+    fun onAsteroidNavigated() {
+        _navigateToAsteroid.value = null
     }
 }

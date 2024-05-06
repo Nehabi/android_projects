@@ -1,6 +1,7 @@
 package com.udacity.asteroidradar.database
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -17,8 +18,11 @@ interface AsteroidDao {
     fun testGetAsteroids(): Asteroid
 
     @Insert (onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAsteroids(asteroidDB: Asteroid)
+    suspend fun insertAsteroids(asteroidDB: List<Asteroid>)
 
-    @Query("SELECT * FROM ${Constants.ASTEROID_DB_TABLE_NAME}")
+    @Query("SELECT * FROM ${Constants.ASTEROID_DB_TABLE_NAME} ORDER BY close_approach_date ASC")
     fun getAsteroids(): LiveData<List<Asteroid>>
+
+    @Query("SELECT * FROM ${Constants.ASTEROID_DB_TABLE_NAME} WHERE id=:asteroidId")
+    fun getAsteroid(asteroidId: Long): Asteroid
 }
