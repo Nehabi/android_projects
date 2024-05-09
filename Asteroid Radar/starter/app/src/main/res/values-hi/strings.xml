@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">एस्टेरॉयड रेडार</string>
+    <string name="next_week_asteroids">अगले सप्ताह के एस्टेरॉयड देखें</string>
+    <string name="today_asteroids">आज के एस्टेरॉयड देखें</string>
+    <string name="saved_asteroids">सहेजे गए एस्टेरॉयड देखें</string>
+    <string name="close_approach_data_title">बंद संपर्क की तारीख</string>
+    <string name="absolute_magnitude_title">निरपेक्ष महत्व</string>
+    <string name="estimated_diameter_title">अनुमानित व्यास</string>
+    <string name="relative_velocity_title">सापेक्ष गति</string>
+    <string name="distance_from_earth_title">पृथ्वी से दूरी</string>
+    <string name="astronomical_unit_format">%f एयू</string>
+    <string name="km_unit_format">%f किमी</string>
+    <string name="km_s_unit_format">%f किमी/सेकंड</string>
+    <string name="image_of_the_day">दिन की छवि</string>
+    <string name="astronomica_unit_explanation">खगोलीय इकाई (एयू) एक लंबाई की इकाई है, लगभग पृथ्वी से सूर्य तक की दूरी और लगभग 150 मिलियन किलोमीटर (93 मिलियन मील) के बराबर है</string>
+    <string name="hazardous_image">संभावित खतरनाक एस्टेरॉयड</string>
+    <string name="non_hazardous_image">अखतरनाक नहीं एस्टेरॉयड</string>
+    <string name="help_button">सहायता</string>
+    <string name="sad_emoji">उदास इमोजी</string>
+    <string name="happy_emoji">खुश इमोजी</string>
+    <string name="english">English</string>
+    <string name="spanish">Español</string>
+    <string name="hindi">हिन्दी</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Radar de Asteroides</string>
+    <string name="next_week_asteroids">Ver asteroides de la próxima semana</string>
+    <string name="today_asteroids">Ver asteroides de hoy</string>
+    <string name="saved_asteroids">Ver asteroides guardados</string>
+    <string name="close_approach_data_title">Fecha de aproximación cercana</string>
+    <string name="absolute_magnitude_title">Magnitud absoluta</string>
+    <string name="estimated_diameter_title">Diámetro estimado</string>
+    <string name="relative_velocity_title">Velocidad relativa</string>
+    <string name="distance_from_earth_title">Distancia desde la Tierra</string>
+    <string name="astronomical_unit_format">%f ua</string>
+    <string name="km_unit_format">%f km</string>
+    <string name="km_s_unit_format">%f km/s</string>
+    <string name="image_of_the_day">Imagen del día</string>
+    <string name="astronomica_unit_explanation">La unidad astronómica (ua) es una unidad de longitud, aproximadamente la distancia de la Tierra al Sol y equivalente a unos 150 millones de kilómetros (93 millones de millas)</string>
+    <string name="hazardous_image">Asteroides Potencialmente Peligrosos</string>
+    <string name="non_hazardous_image">Asteroides No Peligrosos</string>
+    <string name="help_button">Ayuda</string>
+    <string name="sad_emoji">Emoji Triste</string>
+    <string name="happy_emoji">Emoji Feliz</string>
+    <string name="english">English</string>
+    <string name="spanish">Español</string>
+    <string name="hindi">हिन्दी</string>
+</resources>

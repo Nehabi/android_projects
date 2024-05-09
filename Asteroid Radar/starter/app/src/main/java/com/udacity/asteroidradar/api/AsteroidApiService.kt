@@ -23,8 +23,11 @@ private val retrofit = Retrofit.Builder()
 
 interface RadarApiService {
     @GET("neo/rest/v1/feed")
-    suspend fun getAsteroidLists(@Query("api_key") apiKey: String = API_KEY,
-                                 @Query("start_date") startDate:String): String
+    suspend fun getAsteroidLists(
+        @Query("api_key") apiKey: String = API_KEY,
+        @Query("start_date") currentDate: String,
+        @Query("start_date") endDate: String
+    ): String
 
     @GET("planetary/apod")
     suspend fun getImageOfDay(@Query("api_key") apiKey: String = API_KEY): PictureOfDay

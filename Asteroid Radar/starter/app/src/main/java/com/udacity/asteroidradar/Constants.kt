@@ -6,4 +6,8 @@ object Constants {
     const val BASE_URL = "https://api.nasa.gov/"
     const val API_KEY = "7YF24FP6H6RZpTi0NGk9LLjQWJHr0d3Buw744T8K"
     const val ASTEROID_DB_TABLE_NAME = "nasa_asteroid_radar_table"
+    const val ENGLISH_LANGUAGE = "en"
+    const val HINDI_LANGUAGE = "hi"
+    const val SPANISH_LANGUAGE = "es"
+    const val ASTEROID_RADAR_DB = "asteroid_radar_database"
 }

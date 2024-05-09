@@ -2,12 +2,14 @@ package com.udacity.asteroidradar.main
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.udacity.asteroidradar.Constants
 import com.udacity.asteroidradar.R
-import com.udacity.asteroidradar.database.AsteroidDatabase
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
@@ -56,6 +58,26 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.hindi -> AppCompatDelegate.setApplicationLocales (
+                LocaleListCompat.forLanguageTags(Constants.HINDI_LANGUAGE)
+            )
+            R.id.english -> AppCompatDelegate.setApplicationLocales (
+                LocaleListCompat.forLanguageTags(Constants.ENGLISH_LANGUAGE)
+            )
+            R.id.spanish -> AppCompatDelegate.setApplicationLocales (
+                LocaleListCompat.forLanguageTags(Constants.SPANISH_LANGUAGE)
+            )
+            R.id.show_today_asteroids -> {
+                viewModel.setAsteroidDateFilter(AsteroidDateFilter.TODAY)
+            }
+            R.id.show_saved_asteroids -> {
+                viewModel.setAsteroidDateFilter(AsteroidDateFilter.SAVED)
+            }
+            R.id.show_week_asteroids -> {
+                viewModel.setAsteroidDateFilter(AsteroidDateFilter.WEEK)
+            }
+        }
         return true
     }
 }

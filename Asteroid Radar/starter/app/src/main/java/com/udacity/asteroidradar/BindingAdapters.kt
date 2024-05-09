@@ -51,15 +51,14 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
 }
 
 @BindingAdapter("pictureOfDay")
-fun bindImage(imgView: ImageView, imgUrl: String?) {
-    imgUrl?.let {
-        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
+fun bindImage(imgView: ImageView, pictureOfDay: PictureOfDay?) {
+    if (pictureOfDay != null) {
         Glide.with(imgView.context)
-            .load(imgUri)
+            .load(pictureOfDay.url)
             .placeholder(R.drawable.placeholder_picture_of_day)
             .error(R.drawable.placeholder_picture_of_day)
             .into(imgView)
-
+        imgView.contentDescription = pictureOfDay.title
     }
 }
 

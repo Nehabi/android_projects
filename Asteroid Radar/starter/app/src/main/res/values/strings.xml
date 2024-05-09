@@ -18,5 +18,8 @@
     <string name="non_hazardous_image">Not Hazardous Asteroid</string>
     <string name="help_button">Help</string>
     <string name="sad_emoji">Sad Emoji</string>
-    <string name="happy_emoji">Happy Emoji</string>\
+    <string name="happy_emoji">Happy Emoji</string>
+    <string name="english">English</string>
+    <string name="spanish">Español</string>
+    <string name="hindi">हिन्दी</string>
 </resources>

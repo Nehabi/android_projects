@@ -1,6 +1,5 @@
 package com.udacity.asteroidradar
 
-import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.work.Constraints
@@ -32,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.UNMETERED)
             .setRequiresBatteryNotLow(true)
-            .setRequiresDeviceIdle(true)
+            .setRequiresCharging(true)
             .build()
         val repeatingRequest = PeriodicWorkRequestBuilder<RefreshDataWorker>(1, TimeUnit.DAYS)
             .setConstraints(constraints)
