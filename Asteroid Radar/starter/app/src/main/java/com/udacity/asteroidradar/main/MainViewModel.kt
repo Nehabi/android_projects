@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.PictureOfDay
@@ -27,20 +28,27 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val asteroidApiStatus: LiveData<AsteroidApiStatus>
         get() = _asteroidApiStatus
 
-    private var _asteroidDateFilter = MutableLiveData<AsteroidDateFilter>()
+    private var asteroidDateFilter = MutableLiveData<AsteroidDateFilter>()
 
-    private val asteroidDatabase = AsteroidDatabase.getInstance(getApplication())
+    private var asteroidDatabase = AsteroidDatabase.getInstance(getApplication())
 
     private val asteroidRepository = AsteroidRepository(asteroidDatabase)
 
-    var asteroidList = asteroidRepository.todayAsteroidList
+    var asteroidList = asteroidDateFilter.switchMap {
+        when(asteroidDateFilter.value) {
+            AsteroidDateFilter.TODAY -> asteroidRepository.todayAsteroidList
+            AsteroidDateFilter.WEEK -> asteroidRepository.weekAsteroidList
+            AsteroidDateFilter.SAVED -> asteroidRepository.savedAsteroidList
+            else -> asteroidRepository.todayAsteroidList
+        }
+    }
 
     init {
         _asteroidApiStatus.value = AsteroidApiStatus.LOADING
         viewModelScope.launch {
             asteroidRepository.refreshAsteroids()
             getImageOfDay()
-            _asteroidDateFilter.value = AsteroidDateFilter.TODAY
+            setAsteroidDateFilter(AsteroidDateFilter.TODAY)
             _asteroidApiStatus.value = AsteroidApiStatus.DONE
         }
     }
@@ -60,11 +68,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun setAsteroidDateFilter(asteroidDateFilter: AsteroidDateFilter) {
-        _asteroidDateFilter.value = asteroidDateFilter
-        asteroidList = when(asteroidDateFilter) {
-            AsteroidDateFilter.TODAY -> asteroidRepository.todayAsteroidList
-            AsteroidDateFilter.SAVED -> asteroidRepository.savedAsteroidList
-            AsteroidDateFilter.WEEK -> asteroidRepository.weekAsteroidList
-        }
+        this.asteroidDateFilter.value = asteroidDateFilter
     }
 }

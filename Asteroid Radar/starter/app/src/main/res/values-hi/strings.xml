@@ -23,4 +23,5 @@
     <string name="english">English</string>
     <string name="spanish">Español</string>
     <string name="hindi">हिन्दी</string>
+    <string name="empty_image">खाली</string>
 </resources>

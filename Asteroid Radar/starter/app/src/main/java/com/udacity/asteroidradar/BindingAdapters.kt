@@ -4,9 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.LiveData
 import com.bumptech.glide.Glide
 import com.udacity.asteroidradar.main.AsteroidApiStatus
 
@@ -59,6 +57,8 @@ fun bindImage(imgView: ImageView, pictureOfDay: PictureOfDay?) {
             .error(R.drawable.placeholder_picture_of_day)
             .into(imgView)
         imgView.contentDescription = pictureOfDay.title
+    } else {
+        imgView.contentDescription = imgView.context.getString(R.string.hazardous_image)
     }
 }
 

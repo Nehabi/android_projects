@@ -3,6 +3,7 @@ package com.udacity.asteroidradar
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.udacity.asteroidradar.api.getCurrentDate
 import com.udacity.asteroidradar.database.AsteroidDao
 import com.udacity.asteroidradar.database.AsteroidDatabase
 import org.junit.After
@@ -41,8 +42,8 @@ class AsteroidRadarTest {
     @Test
     @Throws(Exception::class)
     fun insertAndGetAsteroids() {
-    val asteroid = Asteroid(200, "neha", "bisht", 200.0, 200.0, 200.0, 200.0, false)
+    val asteroid = Asteroid(200, "neha", "2024-05-09", 200.0, 200.0, 200.0, 200.0, false)
             asteroidDao.testInsert(asteroid)
-        assertEquals(asteroidDao.testGetAsteroids().codename, "neha")
+        assertEquals(asteroidDao.testGetAsteroids().closeApproachDate, getCurrentDate())
     }
 }

@@ -23,20 +23,17 @@ interface AsteroidDao {
            "WHERE close_approach_date=:currentDate ")
     fun getTodayAsteroids(currentDate: String): LiveData<List<Asteroid>>
 
-    @Query("SELECT * FROM ${Constants.ASTEROID_DB_TABLE_NAME} WHERE id=:asteroidId")
-    fun getAsteroid(asteroidId: Long): Asteroid
-
     @Query("SELECT * FROM ${Constants.ASTEROID_DB_TABLE_NAME} " +
            "WHERE close_approach_date>=:currentDate " +
            "AND close_approach_date<=:endDate " +
-           "ORDER BY close_approach_date ASC")
+           "ORDER BY close_approach_date")
     fun getWeekAsteroids(currentDate: String, endDate: String): LiveData<List<Asteroid>>
 
     @Query("SELECT * FROM ${Constants.ASTEROID_DB_TABLE_NAME} " +
-           "ORDER BY close_approach_date ASC")
+            "ORDER BY close_approach_date ")
     fun getSavedAsteroids(): LiveData<List<Asteroid>>
 
     @Query ("DELETE FROM ${Constants.ASTEROID_DB_TABLE_NAME} " +
-            "WHERE close_approach_date<:currentDate")
+            "WHERE close_approach_date<:currentDate ")
     suspend fun deletePreviousAsteroid(currentDate: String)
 }
