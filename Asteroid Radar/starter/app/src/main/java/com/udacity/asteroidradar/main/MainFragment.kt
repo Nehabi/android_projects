@@ -1,5 +1,10 @@
 package com.udacity.asteroidradar.main
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatDelegate
@@ -11,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.udacity.asteroidradar.Constants
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
+
 
 class MainFragment : Fragment() {
 
@@ -79,5 +85,26 @@ class MainFragment : Fragment() {
             }
         }
         return true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity?.registerReceiver(
+            networkStateReceiver,
+            IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        )
+    }
+
+    override fun onPause() {
+        activity?.unregisterReceiver(networkStateReceiver)
+        super.onPause()
+    }
+
+    private val networkStateReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent?) {
+            val manager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val networkInfo = manager.activeNetworkInfo
+            viewModel.updateOnlineStatus(networkInfo?.isConnected == true)
+        }
     }
 }

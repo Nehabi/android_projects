@@ -34,6 +34,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val asteroidRepository = AsteroidRepository(asteroidDatabase)
 
+    private var onlineStatus = MutableLiveData<Boolean>().apply { value = false }
+
     var asteroidList = asteroidDateFilter.switchMap {
         when(asteroidDateFilter.value) {
             AsteroidDateFilter.TODAY -> asteroidRepository.todayAsteroidList
@@ -44,13 +46,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     init {
-        _asteroidApiStatus.value = AsteroidApiStatus.LOADING
-        viewModelScope.launch {
-            asteroidRepository.refreshAsteroids()
-            getImageOfDay()
-            setAsteroidDateFilter(AsteroidDateFilter.TODAY)
-            _asteroidApiStatus.value = AsteroidApiStatus.DONE
-        }
+        loadData()
     }
 
     private fun getImageOfDay() {
@@ -69,5 +65,26 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun setAsteroidDateFilter(asteroidDateFilter: AsteroidDateFilter) {
         this.asteroidDateFilter.value = asteroidDateFilter
+    }
+
+    fun updateOnlineStatus(online: Boolean) {
+        onlineStatus.value = online
+        if(online && asteroidList.value.isNullOrEmpty()) {
+            loadData()
+        }
+    }
+
+    private fun loadData(){
+        _asteroidApiStatus.value = AsteroidApiStatus.LOADING
+        if(onlineStatus.value == true) {
+            viewModelScope.launch {
+                asteroidRepository.refreshAsteroids()
+                getImageOfDay()
+                setAsteroidDateFilter(AsteroidDateFilter.TODAY)
+                _asteroidApiStatus.value = AsteroidApiStatus.DONE
+            }
+        } else {
+            _asteroidApiStatus.value = AsteroidApiStatus.ERROR
+        }
     }
 }

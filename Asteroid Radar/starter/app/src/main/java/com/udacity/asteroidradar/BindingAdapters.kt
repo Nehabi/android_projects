@@ -58,7 +58,7 @@ fun bindImage(imgView: ImageView, pictureOfDay: PictureOfDay?) {
             .into(imgView)
         imgView.contentDescription = pictureOfDay.title
     } else {
-        imgView.contentDescription = imgView.context.getString(R.string.hazardous_image)
+        imgView.contentDescription = imgView.context.getString(R.string.empty_image)
     }
 }
 
@@ -69,10 +69,25 @@ fun bindAsteroidApiStatus(statusImageView: ProgressBar, status: AsteroidApiStatu
             statusImageView.visibility = View.VISIBLE
         }
         AsteroidApiStatus.ERROR -> {
-            statusImageView.visibility = View.VISIBLE
+            statusImageView.visibility = View.GONE
         }
         AsteroidApiStatus.DONE -> {
             statusImageView.visibility = View.GONE
+        }
+    }
+}
+
+@BindingAdapter("noNetwork")
+fun bindNoNetwork(imageView: ImageView, status: AsteroidApiStatus) {
+    when (status) {
+        AsteroidApiStatus.LOADING -> {
+            imageView.visibility = View.GONE
+        }
+        AsteroidApiStatus.ERROR -> {
+            imageView.visibility = View.VISIBLE
+        }
+        AsteroidApiStatus.DONE -> {
+            imageView.visibility = View.GONE
         }
     }
 }
