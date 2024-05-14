@@ -12,6 +12,7 @@ import com.udacity.asteroidradar.api.RadarApi
 import com.udacity.asteroidradar.database.AsteroidDatabase
 import com.udacity.asteroidradar.repository.AsteroidRepository
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 enum class AsteroidApiStatus { LOADING, ERROR, DONE }
 enum class AsteroidDateFilter { WEEK, TODAY, SAVED }
@@ -51,7 +52,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun getImageOfDay() {
         viewModelScope.launch {
-            imageOfDay.value = RadarApi.retrofitService.getImageOfDay()
+            try {
+                imageOfDay.value = RadarApi.retrofitService.getImageOfDay()
+            } catch (exception: Exception) {
+                Timber.e(exception)
+            }
         }
     }
 
@@ -76,14 +81,19 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun loadData(){
         _asteroidApiStatus.value = AsteroidApiStatus.LOADING
-        if(onlineStatus.value == true) {
-            viewModelScope.launch {
-                asteroidRepository.refreshAsteroids()
-                getImageOfDay()
-                setAsteroidDateFilter(AsteroidDateFilter.TODAY)
-                _asteroidApiStatus.value = AsteroidApiStatus.DONE
+        try {
+            if (onlineStatus.value == true) {
+                viewModelScope.launch {
+                    asteroidRepository.refreshAsteroids()
+                    getImageOfDay()
+                    setAsteroidDateFilter(AsteroidDateFilter.WEEK)
+                    _asteroidApiStatus.value = AsteroidApiStatus.DONE
+                }
+            } else {
+                _asteroidApiStatus.value = AsteroidApiStatus.ERROR
             }
-        } else {
+        } catch (exception: Exception) {
+            Timber.e(exception)
             _asteroidApiStatus.value = AsteroidApiStatus.ERROR
         }
     }
