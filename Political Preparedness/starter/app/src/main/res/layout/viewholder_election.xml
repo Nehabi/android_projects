@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="election"
+            type="com.example.android.politicalpreparedness.network.models.Election" />
+        <variable
+            name="listener"
+            type="com.example.android.politicalpreparedness.election.adapter.ElectionListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{()->listener.onElectionClicked(election)}">
+
+        <TextView
+            android:id="@+id/electionName"
+            style="@style/SubHeadingStyle"
+            android:text="@{election.name}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Election Name" />
+
+        <TextView
+            android:id="@+id/electionDate"
+            style="@style/ListStyle"
+            android:text="@{election.electionDay.toString()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/electionName"
+            tools:text="Election Date" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
